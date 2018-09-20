@@ -12,13 +12,16 @@ import os.path
 # Acessar OS
 import platform
 
+# Buscar argumentos de chamada
+import sys
+
 # Método responsável por instalar uma dependência
 def instalaPacote(packageManager, pacote):
     os.system(packageManager + pacote)
 
 # Método responsável por instalar o Docker
 def instalaDocker(pm):
-    if pm.find("yum"):
+    if pm == "yum -y install ":
         instalaPacote(pm, 'yum-utils \
             device-mapper-persistent-data \
             lvm2')
@@ -41,8 +44,9 @@ def instalaDocker(pm):
         instalaPacote(pm, 'docker-ce')
     
     os.system("systemctl start docker")
-    os.service("systemctl daemon-reload")
+    os.system("systemctl daemon-reload")
     os.system("service docker restart")
+    os.system("usermod -aG docker %s" %(sys.argv[1]))
 
 # Método responsável por instalar o OpenShift Client Tools
 def instalaOcTools():
@@ -51,6 +55,10 @@ def instalaOcTools():
 
     os.system("tar -xvf openshift-origin-client-tools-v3.10.0-dd10d17-linux-64bit.tar.gz")
     os.system("cp openshift-origin-client-tools-v3.10.0-dd10d17-linux-64bit/oc /usr/local/bin/")
+
+if len(sys.argv) < 1:
+    print("[!] Sintaxe incorreta. sudo python configure-oc.py $USER")
+    exit()
 
 # Verificando se o docker está instalado
 verifyDockerInstalled = os.system("docker version > /dev/null")
