@@ -26,7 +26,6 @@ def instalaDocker(pm):
             --add-repo \
             https://download.docker.com/linux/centos/docker-ce.repo")
         instalaPacote(pm, 'docker-ce')
-        os.system("systemctl start docker")
     else:
         instalaPacote(pm, 'apt-transport-https \
             ca-certificates \
@@ -40,6 +39,10 @@ def instalaDocker(pm):
             stable'")
         os.system("apt-get update")
         instalaPacote(pm, 'docker-ce')
+    
+    os.system("systemctl start docker")
+    os.service("systemctl daemon-reload")
+    os.system("service docker restart")
 
 # Método responsável por instalar o OpenShift Client Tools
 def instalaOcTools():
