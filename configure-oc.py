@@ -7,6 +7,7 @@
 
 # Rodar comandos no bash
 import os
+import os.path
 
 # Acessar OS
 import platform
@@ -55,7 +56,7 @@ verifyDockerInstalled = os.system("docker version > /dev/null")
 verifyOcInstalled = os.system("oc version > /dev/null")
 
 # Verificando sistema operacional
-verifyOperationSystem = os.path.isfile("cat /etc/redhat_release > /dev/null")
+verifyOperationSystem = os.path.isfile("/etc/redhat_release")
 
 # Setando gerenciador de pacotes default como o do Debian
 packageManager = 'apt-get install -y '
