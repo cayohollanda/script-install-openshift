@@ -56,7 +56,7 @@ verifyDockerInstalled = os.system("docker version > /dev/null")
 verifyOcInstalled = os.system("oc version > /dev/null")
 
 # Verificando sistema operacional
-verifyOperationSystem = os.path.isfile("/etc/redhat_release")
+verifyOperationSystem = os.path.isfile("/etc/redhat-release")
 
 # Setando gerenciador de pacotes default como o do Debian
 packageManager = 'apt-get install -y '
