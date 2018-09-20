@@ -56,7 +56,7 @@ def instalaOcTools():
     os.system("tar -xvf openshift-origin-client-tools-v3.10.0-dd10d17-linux-64bit.tar.gz")
     os.system("cp openshift-origin-client-tools-v3.10.0-dd10d17-linux-64bit/oc /usr/local/bin/")
 
-if len(sys.argv) < 1:
+if len(sys.argv) < 2:
     print("[!] Sintaxe incorreta. sudo python configure-oc.py $USER")
     exit()
 
