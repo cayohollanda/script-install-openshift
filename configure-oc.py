@@ -57,14 +57,18 @@ verifyOcInstalled = os.system("oc version > /dev/null")
 # Verificando sistema operacional
 verifyOperationSystem = os.path.isfile("cat /etc/redhat_release > /dev/null")
 
+# Setando gerenciador de pacotes default como o do Debian
 packageManager = 'apt-get install -y '
 
+# Se for uma dist baseada no RedHat, ele muda o gerenciador de pacotes para o do RedHat
 if verifyOperationSystem == True:
     packageManager = 'yum install '
 
+# Se não tiver o Docker instalado, ele instalará
 if verifyDockerInstalled != 0:
     instalaDocker(packageManager)
 
+# Se não tiver o OpenShift Client Tools instalado, ele instalará
 if verifyOcInstalled != 0:
     instalaOcTools()
 
