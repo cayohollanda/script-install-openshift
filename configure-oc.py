@@ -66,7 +66,7 @@ packageManager = 'apt-get install -y '
 
 # Se for uma dist baseada no RedHat, ele muda o gerenciador de pacotes para o do RedHat
 if verifyOperationSystem == True:
-    packageManager = 'yum install '
+    packageManager = 'yum -y install '
 
 # Se não tiver o Docker instalado, ele instalará
 if verifyDockerInstalled != 0:
